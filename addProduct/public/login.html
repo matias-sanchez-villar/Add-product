@@ -17,7 +17,7 @@
                 <form>
                     <div class="mb-4">
                         <label for="email" class="form-label">Email</label>
-                        <input id="email" type="emil" class="form-control" name="email">
+                        <input id="email" type="email" class="form-control" name="email">
                     </div>
                     <div class="mb-4">
                         <label for="password" class="form-label">Password</label>
@@ -27,11 +27,30 @@
                         <button id="logIn" type="submit" class="btn btn-primary">log in</button>
                     </div>
                     <div class="my-3">
-                        <span>You do not have an account </span><a href="">Sign up</a><br>
-                        <span>Did you forget your password </span><a href="">recover password</a></span>
+                        <span>You do not have an account </span><a id="signUp" href="" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Sign up</a><br>
+                        <span>Did you forget your password </span><a id="recoverPassword" href="" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">recover password</a></span>
                     </div>
                 </form>
 
+            </div>
+        </div>
+    </div>
+  
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="saveChanges" type="button" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
@@ -41,7 +60,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     
-    <script src="../script/controller/controller.js" type="module"></script>
+    <script src="../script/controller/userController.js" type="module"></script>
   
 </body>
 </html>

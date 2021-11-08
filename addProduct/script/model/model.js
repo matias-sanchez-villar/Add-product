@@ -5,16 +5,10 @@ export class UserModel{
 
     newUser(user)
     {
-        let userStorage = localStorage.getItem('user');
-        if(userStorage != null){
-            localStorage.setItem('user', JSON.stringify(userStorage));
-        }else{
-            let userArray = [];
-            userArray = localStorage;
-            userArray.push(user);
-            localStorage.setItem('user', JSON.stringify(userStorage));
-        }
-
+        let userStorage = JSON.parse(localStorage.getItem('user')) || [];
+        this.userStorage = userStorage.map(x => new User(x.email, x.password));
+        this.userStorage.push(user);
+        localStorage.setItem('user', JSON.stringify(this.userStorage));
     }
 
     listUser()
