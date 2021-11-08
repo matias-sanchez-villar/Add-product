@@ -1,7 +1,6 @@
 import {User} from '../entities/user.js';
-import {Product} from '../entities/product.js';
-import {UserModel} from '../model/model.js';
-import {UserView} from '../view/view.js';
+import {UserModel} from '../model/userModel.js';
+import {UserView} from '../view/userView.js';
 
 
 class UserController{

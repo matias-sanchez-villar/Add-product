@@ -13,6 +13,7 @@ class Product {
 }
 
 class UI {
+    
   addProduct(product) {
       $("tbody").append(`<tr id="${product.id}">
                             <td>${product.id}</td>

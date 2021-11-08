@@ -1,5 +1,4 @@
 import {User} from '../entities/user.js';
-import {Product} from '../entities/product.js';
 
 export class UserModel{
 
