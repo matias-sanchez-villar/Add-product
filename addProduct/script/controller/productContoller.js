@@ -22,14 +22,16 @@ class ProductController
 
     loadTable()
     {
-        this.product = this.model.listProduct() || [];
+        const product = this.model.listProduct();
+        
+        if(product == null) return;
 
-        if(this.product == null) return;
-        this.product.forEach(x => {
+        product.forEach(x => {
             if(x.idUser == this.idUser){
                 this.view.table(x);
             }
         });
+        
     }
 
     clickSignOff()
@@ -50,12 +52,13 @@ class ProductController
 
             const mark =  $("#mark").val();
             const name =  $("#name").val();
-            const price =  $("#price").val();
+            const price =  $("#price").val() != null ? $("#price").val() : 0;
 
-            this.product.push(new Product(this.idUser ,mark, name, price));
+            const product = new Product(this.idUser ,mark, name, price);
             
-            this.model.newProduct(this.product);
-            this.view.table(this.product);
+            this.model.newProduct(product);
+            this.view.table(product);
+            
         });
     }
 

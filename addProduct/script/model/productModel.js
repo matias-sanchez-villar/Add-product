@@ -5,7 +5,7 @@ export class ProductModel
     newProduct(product)
     {
         let productStorage = JSON.parse(localStorage.getItem('product')) || [];
-        this.productStorage = productStorage.map(x => new Product(x.mark, x.name, x.price));
+        this.productStorage = productStorage.map(x => new Product(x.idUser, x.mark, x.name, x.price));
         this.productStorage.push(product);
         localStorage.setItem('product', JSON.stringify(this.productStorage));
     }
