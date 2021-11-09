@@ -34,8 +34,8 @@ class UserController{
             user.forEach(x => {
                 if(x.email == email && x.password == password){
                     flag = true;
+                    localStorage.setItem("session", x.id);
                     window.location.replace("http://127.0.0.1:5500/public/product.html");
-                    sessionStorage.setItem("session", x);
                 }
             });
             
@@ -93,7 +93,7 @@ class UserController{
         const password =  $("#passwordModal").val();
 
         this.userModel.newUser(new User(email, password));
-
+        this.userView.alert("New user created successfully", "primary");
     }
 
     recoverPassword()

@@ -7,21 +7,36 @@ class ProductController
 {
     constructor(model, view)
     {
+        if(localStorage.getItem("session") == null) window.location.replace("http://127.0.0.1:5500/public/login.html");
+        
         this.model = model;
         this.view = view;
+        this.idUser = localStorage.getItem("session");
 
-        if(sessionStorage.getItem("session") == null) window.location.replace("http://127.0.0.1:5500/public/login.html");
-        
         this.loadTable();
+        this.clickSignOff();
         this.clickAdd();
+        this.clickTable();
 
     }
 
     loadTable()
     {
-        const product = this.model.listProduct();
-        product.forEach(x => {
-            this.view.table(x);
+        this.product = this.model.listProduct() || [];
+
+        if(this.product == null) return;
+        this.product.forEach(x => {
+            if(x.idUser == this.idUser){
+                this.view.table(x);
+            }
+        });
+    }
+
+    clickSignOff()
+    {
+        $("#siginOff").click(()=>{
+            localStorage.removeItem('session');
+            window.location.replace("http://127.0.0.1:5500/public/login.html");
         });
     }
 
@@ -37,11 +52,38 @@ class ProductController
             const name =  $("#name").val();
             const price =  $("#price").val();
 
-            const product = new Product(mark, name, price)
+            this.product.push(new Product(this.idUser ,mark, name, price));
             
-            this.model.newProduct(product);
-            this.view.table(product);
+            this.model.newProduct(this.product);
+            this.view.table(this.product);
         });
+    }
+
+    clickTable()
+    {
+        $('#product-list').click((e)=>{
+            e.preventDefault();
+            
+            if(e.target.name === "delete")
+            {
+                this.delete(e);
+            }
+            if(e.target.name === "edit")
+            {
+                this.edit(e);
+            }
+        
+        });
+    }
+
+    delete(e)
+    {
+        
+    }
+
+    edit(e)
+    {
+       
     }
 
     validateInputs(id, message)

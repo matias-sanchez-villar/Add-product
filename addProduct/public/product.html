@@ -12,9 +12,13 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-dark bg-dark">
         <a href="/" class="navbar-brand">Product App</a>
+        <nav class="my-2 my-md-0 mr-md-3">
+            <a id="siginOff" class="p-2 text-light" href="#">Sign off</a>
+        </nav>
     </nav>
+
     <div class="container">
         <div id="App" class="row pt-5">
             <div class="col-md-4">
@@ -50,6 +54,7 @@
                       </tr>
                     </thead>
                     <tbody>
+                        
                     </tbody>
                   </table>
             </div>
@@ -70,7 +75,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button id="saveChanges" type="button" class="btn btn-primary">Save changes</button>
+              <button id="saveChanges" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
             </div>
           </div>
         </div>

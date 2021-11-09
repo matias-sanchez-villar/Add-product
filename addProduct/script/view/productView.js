@@ -19,16 +19,26 @@ export class ProductView
                               <td>${product.name}</td>
                               <td>${product.price}</td>
                               <td>
-                                  <button name="edit" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                                  <button data-id="${product.id}" name="edit" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
                                       <i class="fas fa-edit"></i>
                                   </button>
                               </td>
                               <td>
-                                  <button name="delete" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                                  <button data-id="${product.id}" name="delete" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                                       <i class="fas fa-trash-alt"></i>
                                   </button>
                               </td>
                             </tr>`);
+    }
+
+    deleteModal()
+    {
+
+    }
+
+    editModal()
+    {
+        
     }
 
 }
