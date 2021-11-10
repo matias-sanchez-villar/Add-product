@@ -15,8 +15,9 @@ class ProductController
 
         this.loadTable();
         this.clickSignOff();
-        this.clickAdd();
+        this.clickAddForm();
         this.clickTable();
+        this.clickModal();
 
     }
 
@@ -27,7 +28,7 @@ class ProductController
         if(product == null) return;
 
         product.forEach(x => {
-            if(x.idUser == this.idUser){
+            if(x.idUser == this.idUser && x.state == true){
                 this.view.table(x);
             }
         });
@@ -42,7 +43,7 @@ class ProductController
         });
     }
 
-    clickAdd()
+    clickAddForm()
     {
         $("#addProduct").click((e)=>{
             e.preventDefault();
@@ -58,35 +59,100 @@ class ProductController
             
             this.model.newProduct(product);
             this.view.table(product);
+
+            //resetear el formulario
+            $("#product-form")[0].reset();
             
         });
     }
+
 
     clickTable()
     {
         $('#product-list').click((e)=>{
             e.preventDefault();
+            this.view.resetModal();
             
             if(e.target.name === "delete")
             {
-                this.delete(e);
+                this.view.deleteModal(e.target.dataset.id);
             }
             if(e.target.name === "edit")
             {
-                this.edit(e);
+                this.edit(e.target.dataset.id);
             }
         
         });
     }
 
-    delete(e)
+    edit(id)
     {
-        
+        const product = this.model.listProduct();
+
+        product.forEach(x => {
+            if(x.id == id){
+                this.view.editModal(x.id, x.mark, x.name, x.price);
+            }
+        });
     }
 
-    edit(e)
+    clickModal()
     {
+        $(".modal-footer").click((e)=>{
+
+            if(e.target.name === "delete")
+            {
+                this.deleteModal(e.target.id);
+            }
+            if(e.target.name === "edit")
+            {
+                this.editModal(e.target.id);
+            }
+
+        });
+    }
+
+    deleteModal(id)
+    {
+        $(`#${id}`).remove();
+
+        const product = this.model.listProduct();
+        
+        product.forEach(x => {
+            if(x.id == id){
+                x.state = false;
+            }
+        });
+
+        this.model.resetProduct(product);
        
+    }
+
+    editModal(id)
+    {
+        if(this.validateInputs("markModal", "you must add the mark") == false) return;
+        if(this.validateInputs("nameModal", "you must add the name") == false) return;
+
+        const mark =  $("#markModal").val();
+        const name =  $("#nameModal").val();
+        const price =  $("#priceModal").val() != null ? $("#priceModal").val() : 0;
+
+        $($(`#${id}`).children()[1]).text(mark);
+        $($(`#${id}`).children()[2]).text(name);
+        $($(`#${id}`).children()[3]).text(price);
+
+        const product = this.model.listProduct();
+        
+        product.forEach(x => {
+            if(x.id == id){
+                x.mark = mark;
+                x.name = name;
+                x.price = price;
+            }
+        });
+
+        this.model.resetProduct(product);
+
     }
 
     validateInputs(id, message)

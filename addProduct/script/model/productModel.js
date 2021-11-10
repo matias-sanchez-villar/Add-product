@@ -19,4 +19,9 @@ export class ProductModel
             return productStorage;
         }
     }
+
+    resetProduct(product)
+    {
+        localStorage.setItem('product', JSON.stringify(product));
+    }
 }

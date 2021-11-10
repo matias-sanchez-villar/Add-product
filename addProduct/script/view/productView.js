@@ -31,14 +31,41 @@ export class ProductView
                             </tr>`);
     }
 
-    deleteModal()
+    deleteModal(id)
     {
+        $("#exampleModalLabel").prepend("Delete");
 
+        $(".modal-body").prepend(`Are you sure you want to delete the product?`);
+
+        $(".modal-footer").prepend(`<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button id="${id}" name="delete" type="button" class="btn btn-primary" data-dismiss="modal">Delete</button>`);
     }
 
-    editModal()
+    editModal(id, mark, name, price)
     {
-        
+        $("#exampleModalLabel").prepend("Edit");
+
+        $(".modal-body").prepend(`<form>
+                                        <div class="form-group">
+                                            <input type="text" id="markModal" class="form-control" placeholder="${mark}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" id="nameModal" class="form-control" placeholder="${name}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="number" id="priceModal" step="0.01" min="0" class="form-control" placeholder="${price}" />
+                                        </div>
+                                   </form>`);
+
+        $(".modal-footer").prepend(`<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button id="${id}" name="edit" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>`);
+    }
+
+    resetModal()
+    {
+        $('.modal-title').empty();
+        $('.modal-body').empty();
+        $('.modal-footer').empty();
     }
 
 }
