@@ -14,10 +14,10 @@ export class ProductView
     table(product)
     {
         $("tbody").append(`<tr id="${product.id}">
-                              <td>${product.id}</td>
-                              <td>${product.mark}</td>
-                              <td>${product.name}</td>
-                              <td>${product.price}</td>
+                              <td name="id" data-idProduct="${product.id}">${product.id}</td>
+                              <td name="mark">${product.mark}</td>
+                              <td name="product">${product.name}</td>
+                              <td name="price">${product.price}</td>
                               <td>
                                   <button data-id="${product.id}" name="edit" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
                                       <i class="fas fa-edit"></i>

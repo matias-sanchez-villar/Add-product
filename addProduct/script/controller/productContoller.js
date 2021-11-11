@@ -18,6 +18,7 @@ class ProductController
         this.clickAddForm();
         this.clickTable();
         this.clickModal();
+        this.keyupFilter();
 
     }
 
@@ -153,6 +154,20 @@ class ProductController
 
         this.model.resetProduct(product);
 
+    }
+
+    keyupFilter()
+    {
+        $("#keyupFilter").keyup((e)=>{
+            for(let x = 1; x < $("tr").length; x++)
+            {
+               const metod = $($("tr")[x]).children()[1];
+               const text = $(metod).text();
+
+               text.includes(e.target.value) ? $($("tr")[x]).fadeIn("slow").removeClass("d-none") : $($("tr")[x]).fadeOut("slow").addClass("d-none");
+
+            }
+        });
     }
 
     validateInputs(id, message)
