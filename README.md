@@ -11,7 +11,11 @@ ABM de productos con JQuery y Bootstrap
     ``` window.location.replace(" TU RUTA "); ```
 
 ### Login
-![login](https://myoctocat.com/assets/images/base-octocat.svg)
+![login](https://raw.githubusercontent.com/matias-sanchez-villar/Add-product/main/img/LoginUser.PNG)
+![login](https://raw.githubusercontent.com/matias-sanchez-villar/Add-product/main/img/RegisterUser.PNG)
+![login](https://raw.githubusercontent.com/matias-sanchez-villar/Add-product/main/img/RememberPassword.PNG)
 
 ### ABM Product
-!ABM Product](https://myoctocat.com/assets/images/base-octocat.svg)
+![ABM Product](https://raw.githubusercontent.com/matias-sanchez-villar/Add-product/main/img/ABMProduct.PNG)
+![ABM Product](https://raw.githubusercontent.com/matias-sanchez-villar/Add-product/main/img/EditProduct.PNG)
+![ABM Product](https://raw.githubusercontent.com/matias-sanchez-villar/Add-product/main/img/DeleteProduct.PNG)
