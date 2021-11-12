@@ -19,6 +19,8 @@ class ProductController
         this.clickTable();
         this.clickModal();
         this.keyupFilter();
+        this.clickPrevious();
+        this.clickNext();
 
     }
 
@@ -33,8 +35,24 @@ class ProductController
                 this.view.table(x);
             }
         });
+        Product.contador = product.length;
+        this.visibleElements();
         
     }
+
+    visibleElements()
+    {
+        if($("tr") > 6) return;
+
+        this.previous = 1;
+        this.next = 5;
+
+        for(let x = this.previous; x < this.next; x++)
+        {
+            $($("tr")[x]).addClass("d-none");
+        }
+    }
+
 
     clickSignOff()
     {
@@ -63,7 +81,8 @@ class ProductController
 
             //resetear el formulario
             $("#product-form")[0].reset();
-            
+
+            this.visibleElements();
         });
     }
 
@@ -166,6 +185,50 @@ class ProductController
 
                text.includes(e.target.value) ? $($("tr")[x]).fadeIn("slow").removeClass("d-none") : $($("tr")[x]).fadeOut("slow").addClass("d-none");
 
+            }
+        });
+    }
+
+    clickPrevious()
+    {
+        $("#previous").click(()=>{
+            
+            if(1 >= this.previous) return;
+            this.previous -= 5;
+            this.next -= 5;
+
+            for(let x = 1; x < $("tr").length; x++)
+            {
+                if(x >= this.previous+5 && x <= this.next+5)
+                {
+                    $($("tr")[x]).removeClass("d-none");
+                }
+                if(x >= this.previous && x <= this.next)
+                {
+                    $($("tr")[x]).addClass("d-none")
+                }
+            }
+        });
+    }
+
+    clickNext()
+    {
+        $("#next").click(()=>{
+
+            if($("tr").length <= this.next) return;
+            this.previous += 5;
+            this.next += 5;
+
+            for(let x = 1; x < $("tr").length; x++)
+            {
+                if(x >= this.previous-5 && x <= this.next-5)
+                {
+                    $($("tr")[x]).removeClass("d-none");
+                }
+                if(x >= this.previous && x <= this.next)
+                {
+                    $($("tr")[x]).addClass("d-none");
+                }
             }
         });
     }
