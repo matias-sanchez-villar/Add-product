@@ -7,7 +7,7 @@ class ProductController
 {
     constructor(model, view)
     {
-        if(localStorage.getItem("session") == null) window.location.replace("http://127.0.0.1:5500/public/login.html");
+        if(localStorage.getItem("session") == null) window.location.replace("http://127.0.0.1:5500/addProduct/public/login.html");
         
         this.model = model;
         this.view = view;
@@ -42,8 +42,8 @@ class ProductController
 
     visibleElements()
     {
-        if($("tr") > 6) return;
-
+        if($("tr").length < 6) return;
+        console.log("DD");
         this.previous = 1;
         this.next = 5;
 
@@ -91,6 +91,7 @@ class ProductController
     {
         $('#product-list').click((e)=>{
             e.preventDefault();
+
             this.view.resetModal();
             
             if(e.target.name === "delete")
@@ -150,12 +151,27 @@ class ProductController
 
     editModal(id)
     {
-        if(this.validateInputs("markModal", "you must add the mark") == false) return;
-        if(this.validateInputs("nameModal", "you must add the name") == false) return;
+        let mark;
+        let name;
+        let price;
 
-        const mark =  $("#markModal").val();
-        const name =  $("#nameModal").val();
-        const price =  $("#priceModal").val() != null ? $("#priceModal").val() : 0;
+        if($("#markModal").val() != ""){
+            mark =  $("#markModal").val();
+        }else{
+            mark = $("#markModal")[0].placeholder;
+        }
+        
+        if($("#nameModal").val() != ""){
+            name =  $("#nameModal").val();
+        }else{
+            name = $("#nameModal")[0].placeholder;
+        }
+
+        if($("#priceModal").val() != ""){
+            price =  $("#priceModal").val();
+        }else{
+            price = $("#priceModal")[0].placeholder;
+        }
 
         $($(`#${id}`).children()[1]).text(mark);
         $($(`#${id}`).children()[2]).text(name);

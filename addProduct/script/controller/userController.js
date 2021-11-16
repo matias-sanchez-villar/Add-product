@@ -35,7 +35,7 @@ class UserController{
                 if(x.email == email && x.password == password){
                     flag = true;
                     localStorage.setItem("session", x.id);
-                    window.location.replace("http://127.0.0.1:5500/public/product.html");
+                    window.location.replace("http://127.0.0.1:5500/addProduct/public/product.html");
                 }
             });
             
